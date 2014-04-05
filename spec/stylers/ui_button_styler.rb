@@ -76,6 +76,20 @@ describe 'stylers/ui_button' do
         components[2].to_i.should == 1
         components[3].to_i.should == 1
       end
+
+      it "sets the right colors from hex value" do
+        @view.style { |st| st.border_color = rmq.color.from_hex('#ff00ff') }
+        color = nil
+        @view.style{ |st| color = st.border_color }
+        components = CGColorGetComponents(color)
+
+        # R=1, G=0, B=1 A=1
+        components[0].to_i.should == 1
+        components[1].to_i.should == 0
+        components[2].to_i.should == 1
+        components[3].to_i.should == 1
+      end
+
     end
   end
 
